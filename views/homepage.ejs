@@ -1,0 +1,104 @@
+<%- include('navbarOnly'); -%>
+<%- include('background'); -%>
+
+
+
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Navbar</title>
+  <link rel="stylesheet" href="homepage.css">
+
+  
+    <style>
+
+      
+    #heading{
+      display: flex;
+    flex-direction: column;
+    
+    width: 78vw;
+   
+    align-items: center;
+    margin: auto;
+    }
+    #map{
+      width: 70%;
+      position: relative;
+      left: 15%;
+      
+    }
+   .map h3{
+    text-align: center;
+   }
+  .heading2{
+    font-size: x-large;
+  }
+  </style>
+ 
+  
+</head>
+
+<body>
+  
+
+  
+  <div id="heading">
+    <h1 id="heading1">WELCOME TO THE
+      DP MEMORIAL HOMOEOPATHY CLINIC</h1>
+      <h3>Address</h3>
+            <p>
+              F 22/102, Shop Number 5, 6, Rohini Sector 3, Delhi - 110085 (Beside State Bank Of, Near Gopal Jee Bhaturewale)</p>
+    <p>Doctor in New Delhi</p>
+    <p>Opening at 11:00 tomorrow</p>
+
+  </div>
+
+  <%- include('standard'); -%>
+  <%- include('gallary'); -%>
+
+
+
+<div >
+  <img src="../Screenshot 2023-08-10 091857.png" alt="">
+</div>
+<div class="map">
+  <h3>How to Reach</h3>
+<a href="https://www.google.com/maps/dir//DP+MEMORIAL+HOMOEOPATHY+CLINIC,+F+22%2F102+Shop+no.+5+%26+6,+Sector+3,+Rohini,+New+Delhi,+Delhi+110085/@28.7010403,77.0988986,17z/data=!4m8!4m7!1m0!1m5!1m1!1s0x390d04008a1dcee5:0x614dc35a9374b7d8!2m2!1d77.1014735!2d28.7010403?entry=ttu" target="_blank"><img src="/Map.png" alt="" id="map"></a>
+</div>
+<%- include('footer'); -%>
+
+
+
+  
+
+  <!-- The dots/circles -->
+  
+  <script src="homepage.js"></script>
+<script>
+  function typeWriter(el) {
+    const textArray = el.innerHTML.split('');
+    el.innerHTML = '';
+    textArray.forEach((letter, i) =>
+        setTimeout(() => (el.innerHTML += letter), 95 * i)
+    );
+    // setTimeout(() => typeWriter(el), 7500);
+}
+
+ typeWriter(heading1);
+ 
+
+</script>
+</body>
+
+</html>
+
+
+
+
+
