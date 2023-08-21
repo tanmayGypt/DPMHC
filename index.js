@@ -2,10 +2,12 @@ const express= require("express");
 const bodyparser=require("body-parser");
 let ejs = require('ejs');
 const app= express();
+const favicon = require('serve-favicon');
+const path=require('path');
 app.use(express.static("public"));
 app.use(bodyparser.urlencoded({extended:true}));
 app.set('view engine', 'ejs');
-
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
 let arr=[];
 
 let url=[];
