@@ -68,7 +68,7 @@ app.get("/appointment",(req,res)=>{
 })
 
 app.get("/videos",(req,res)=>{
-   res.render("videos",{newListItem1: url, newListItem2:heading, newListItem3: published});
+   res.render("videos",{newListItem1: url, newListItem2:heading, newListItem3: published, front: url[0] , frontHeading: heading[0]});
 })
 
 app.get("/review",(req,res)=>{
