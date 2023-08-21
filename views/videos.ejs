@@ -136,8 +136,8 @@
 <div class="container">
     <div class="main-video">
         <div class="video">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/zDyZ8Ib6Kus" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-            <h3 class="title">this is main</h3>    
+            <iframe width="560" height="315" src=<%= front %> frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </h3><h3 class="title"><%= frontHeading %></h3>    
         </div>
 
     </div>
@@ -146,7 +146,7 @@
         <% for(let i=0;i<newListItem1.length;i++){ %>
         <div class="vid">
             <iframe  src=<%= newListItem1[i] %> ></iframe>
-            <h3 class="title"><%= newListItem2 [i]%></h3>  
+            <h3 class="title">Title: <%= newListItem2 [i]%></h3>  
             <h5><%= newListItem3 [i]%></h5> 
         </div>
         <% } %>
