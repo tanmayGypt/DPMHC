@@ -6,6 +6,49 @@ app.use(express.static("public"));
 app.use(bodyparser.urlencoded({extended:true}));
 app.set('view engine', 'ejs');
 
+let arr=[];
+
+let url=[];
+let heading=[];
+let published=[];
+var date = new Date();
+
+ fetch('https://youtube.googleapis.com/youtube/v3/search?part=snippet&channelId=UCJPg1xTH9GT6ZUAxoc2HUWQ&maxResults=10000&order=relevance&type=video&key=AIzaSyD7DRkKTIBkjOGkEnnJkAyz1DfXqqzUq58')
+.then((response)=>{
+    return response.json()
+
+    
+}).then( async(data)=>{
+    
+    let items=data.items
+    console.log(items);
+   await items.forEach(element => {
+        arr.push(element.id.videoId)
+        url.push( "https://www.youtube.com/embed/" + element.id.videoId);
+        
+    
+    });
+    await items.forEach(element1=>{
+        heading.push(element1.snippet.title);
+       let year = element1.snippet.publishTime.substring(0,4);
+       let month=element1.snippet.publishTime.substring(5,7);
+       let day= element1.snippet.publishTime.substring(8,10);
+       console.log(day);
+
+       published.push("Publish Date: " + day + "-" + month + "-" +year);
+
+      
+       
+        
+    
+       
+    
+      
+    })
+
+})
+
+
 
 
 app.get("/",(req,res)=>{
@@ -25,7 +68,7 @@ app.get("/appointment",(req,res)=>{
 })
 
 app.get("/videos",(req,res)=>{
-    res.render("videos")
+   res.render("videos",{newListItem1: url, newListItem2:heading, newListItem3: published});
 })
 
 app.get("/review",(req,res)=>{
