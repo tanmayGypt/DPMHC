@@ -81,6 +81,16 @@ app.get("/review",(req,res)=>{
     res.render("review")
 })
 
+app.get("/login",(req,res)=>{
+    res.render("login");
+})
+
+app.post("/login",(req,res)=>{
+    if(req.body.email===process.env.email){
+        res.render("appointment");
+    }
+})
+
 
 let port=process.env.PORT || 3000;
 
