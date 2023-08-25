@@ -9,7 +9,7 @@
     "routes": [
         {
             "src": "/(.*)",
-            "dest": "/",
+            "dest": "/DPMHC",
             "methods": ["GET", "POST", "PATCH", "DELETE", "OPTIONS"]
         }
     ]
