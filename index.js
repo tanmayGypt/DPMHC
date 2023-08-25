@@ -10,9 +10,7 @@ app.use(bodyparser.urlencoded({extended:true}));
 app.set('view engine', 'ejs');
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
 
-const mongoose = require('mongoose');
-mongoose.connect(process.env.mongooseUrl, {
-useNewUrlParser: true});
+
 
 let arr=[];
 
