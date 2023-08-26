@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .atf_36 * {
+            font-family: Nunito, sans-serif;
+          }
+          
+          .atf_36 .text-blk {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+            line-height: 25px;
+          }
+          
+          .atf_36 input:focus {
+            outline-color: initial;
+            outline-style: none;
+            outline-width: initial;
+          }
+          
+          .atf_36 .responsive-container-block {
+            min-height: 75px;
+            height: fit-content;
+            width: 100%;
+            padding-top: 10px;
+            padding-right: 10px;
+            padding-bottom: 10px;
+            padding-left: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 0px;
+            margin-right: auto;
+            margin-bottom: 0px;
+            margin-left: auto;
+            justify-content: flex-start;
+          }
+          
+          .atf_36 .responsive-container-block.big-container {
+            padding-top: 10px;
+            padding-right: 30px;
+            padding-bottom: 10px;
+            padding-left: 30px;
+            min-height: 800px;
+            background-size: cover;
+            align-items: center;
+            background-color: rgba(21, 21, 21, 0.7);
+            flex-direction: column;
+            justify-content: center;
+          }
+          
+          .atf_36 .imgBG {
+            background-image: url("https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/cw1.svg");
+            background-size: cover;
+            background-repeat-x: no-repeat;
+            background-repeat-y: no-repeat;
+          }
+          
+          .atf_36 .responsive-container-block.container {
+            max-width: 1320px;
+            padding-top: 0px;
+            padding-right: 0px;
+            padding-bottom: 0px;
+            padding-left: 0px;
+            color: white;
+            text-decoration-line: none;
+            text-decoration-thickness: initial;
+            text-decoration-style: initial;
+            text-decoration-color: initial;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            text-align: center;
+            margin-top: 120px;
+            margin-right: auto;
+            margin-bottom: 150px;
+            margin-left: auto;
+          }
+          
+          .atf_36 .text-blk.landing10-head {
+            font-size: 40px;
+            line-height: 55px;
+            font-weight: 700;
+            max-width: 750px;
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 20px;
+            margin-left: 0px;
+          }
+          
+          .atf_36 .text-blk.landing10-subhead {
+            max-width: 790px;
+            font-size: 25px;
+            line-height: 35px;
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 45px;
+            margin-left: 0px;
+          }
+          
+          .atf_36 .input-box {
+            max-width: 650px;
+            width: 100%;
+          }
+          
+          .atf_36 .landing-button {
+            height: auto;
+            width: auto;
+            font-size: 20px;
+            font-weight: 700;
+            color: white;
+            background-color: #f49892;
+            cursor: pointer;
+            border-top-width: 0px;
+            border-right-width: 0px;
+            border-bottom-width: 0px;
+            border-left-width: 0px;
+            border-top-style: outset;
+            border-right-style: outset;
+            border-bottom-style: outset;
+            border-left-style: outset;
+            border-top-color: #767676;
+            border-right-color: #767676;
+            border-bottom-color: #767676;
+            border-left-color: #767676;
+            border-image-source: initial;
+            border-image-slice: initial;
+            border-image-width: initial;
+            border-image-outset: initial;
+            border-image-repeat: initial;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+            border-bottom-left-radius: 10px;
+            padding-top: 17px;
+            padding-right: 60px;
+            padding-bottom: 17px;
+            padding-left: 60px;
+            line-height: 27px;
+          }
+          
+          .atf_36 .landing-button:hover {
+            background-image: initial;
+            background-position-x: initial;
+            background-position-y: initial;
+            background-size: initial;
+            background-repeat-x: initial;
+            background-repeat-y: initial;
+            background-attachment: initial;
+            background-origin: initial;
+            background-clip: initial;
+            background-color: #f49832;
+          }
+          
+          .atf_36 .text-blk.onlineEducation {
+            font-size: 20px;
+            line-height: 28px;
+            font-weight: 700;
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 10px;
+            margin-left: 0px;
+          }
+          
+          .atf_36 .btn {
+            padding-top: 0px;
+            padding-right: 0px;
+            padding-bottom: 0px;
+            padding-left: 0px;
+          }
+          
+          .atf_36 .downArrowImg {
+            margin-top: 0px;
+            margin-right: auto;
+            margin-bottom: 0px;
+            margin-left: auto;
+            width: 40px;
+            height: 75px;
+            cursor: pointer;
+          }
+          
+          .atf_36 #iuy3u {
+            margin: 0 auto 0 auto;
+          }
+          
+          @media (max-width: 1024px) {
+            .atf_36 .responsive-container-block.big-container {
+              background-size: contain;
+              background-repeat-x: no-repeat;
+              background-repeat-y: no-repeat;
+            }
+          
+            .atf_36 .responsive-container-block.big-container {
+              background-size: cover;
+            }
+          
+            .atf_36 .responsive-container-block.big-container {
+              background-position-x: 50%;
+              background-position-y: 50%;
+            }
+          }
+          
+          @media (max-width: 768px) {
+            .atf_36 .responsive-container-block.big-container {
+              background-size: cover;
+            }
+          
+            .atf_36 .text-blk.landing10-head {
+              font-size: 36px;
+              line-height: 45px;
+            }
+          
+            .atf_36 .text-blk.landing10-subhead {
+              font-size: 16px;
+              line-height: 26px;
+            }
+          
+            .atf_36 .text-blk.landing10-subhead {
+              margin-top: 0px;
+              margin-right: 0px;
+              margin-bottom: 40px;
+              margin-left: 0px;
+            }
+          
+            .atf_36 .responsive-container-block.big-container {
+              background-position-x: 50%;
+              background-position-y: 50%;
+            }
+          
+            .atf_36 .text-blk.landing10-head {
+              font-size: 40px;
+              line-height: 55px;
+            }
+          
+            .atf_36 .text-blk.landing10-subhead {
+              font-size: 25px;
+              line-height: 34px;
+            }
+          }
+          
+          @media (max-width: 500px) {
+            .atf_36 .landing-button {
+              width: 100%;
+            }
+          
+            .atf_36 .responsive-container-block.big-container {
+              background-position-x: 50%;
+              background-position-y: 50%;
+            }
+          
+            .atf_36 .responsive-container-block.big-container {
+              padding-top: 10px;
+              padding-right: 20px;
+              padding-bottom: 10px;
+              padding-left: 20px;
+            }
+          
+            .atf_36 .text-blk.landing10-head {
+              font-size: 25px;
+              line-height: 34px;
+              margin-top: 0px;
+              margin-right: 0px;
+              margin-bottom: 20px;
+              margin-left: 0px;
+            }
+          
+            .atf_36 .text-blk.landing10-subhead {
+              font-size: 20px;
+              line-height: 27px;
+            }
+          
+            .atf_36 .text-blk.onlineEducation {
+              margin-top: 0px;
+              margin-right: 0px;
+              margin-bottom: 20px;
+              margin-left: 0px;
+            }
+          
+            .atf_36 .responsive-container-block.container {
+              margin-top: 200px;
+              margin-right: 0px;
+              margin-bottom: 150px;
+              margin-left: 0px;
+            }
+          
+            .atf_36 .text-blk.landing10-subhead {
+              font-size: 18px;
+              line-height: 25px;
+            }
+          }
+
+          @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700;800&amp;display=swap');
+
+*,
+*:before,
+*:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+.wk-desk-1 {
+  width: 8.333333%;
+}
+
+.wk-desk-2 {
+  width: 16.666667%;
+}
+
+.wk-desk-3 {
+  width: 25%;
+}
+
+.wk-desk-4 {
+  width: 33.333333%;
+}
+
+.wk-desk-5 {
+  width: 41.666667%;
+}
+
+.wk-desk-6 {
+  width: 50%;
+}
+
+.wk-desk-7 {
+  width: 58.333333%;
+}
+
+.wk-desk-8 {
+  width: 66.666667%;
+}
+
+.wk-desk-9 {
+  width: 75%;
+}
+
+.wk-desk-10 {
+  width: 83.333333%;
+}
+
+.wk-desk-11 {
+  width: 91.666667%;
+}
+
+.wk-desk-12 {
+  width: 100%;
+}
+
+@media (max-width: 1024px) {
+  .wk-ipadp-1 {
+    width: 8.333333%;
+  }
+
+  .wk-ipadp-2 {
+    width: 16.666667%;
+  }
+
+  .wk-ipadp-3 {
+    width: 25%;
+  }
+
+  .wk-ipadp-4 {
+    width: 33.333333%;
+  }
+
+  .wk-ipadp-5 {
+    width: 41.666667%;
+  }
+
+  .wk-ipadp-6 {
+    width: 50%;
+  }
+
+  .wk-ipadp-7 {
+    width: 58.333333%;
+  }
+
+  .wk-ipadp-8 {
+    width: 66.666667%;
+  }
+
+  .wk-ipadp-9 {
+    width: 75%;
+  }
+
+  .wk-ipadp-10 {
+    width: 83.333333%;
+  }
+
+  .wk-ipadp-11 {
+    width: 91.666667%;
+  }
+
+  .wk-ipadp-12 {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .wk-tab-1 {
+    width: 8.333333%;
+  }
+
+  .wk-tab-2 {
+    width: 16.666667%;
+  }
+
+  .wk-tab-3 {
+    width: 25%;
+  }
+
+  .wk-tab-4 {
+    width: 33.333333%;
+  }
+
+  .wk-tab-5 {
+    width: 41.666667%;
+  }
+
+  .wk-tab-6 {
+    width: 50%;
+  }
+
+  .wk-tab-7 {
+    width: 58.333333%;
+  }
+
+  .wk-tab-8 {
+    width: 66.666667%;
+  }
+
+  .wk-tab-9 {
+    width: 75%;
+  }
+
+  .wk-tab-10 {
+    width: 83.333333%;
+  }
+
+  .wk-tab-11 {
+    width: 91.666667%;
+  }
+
+  .wk-tab-12 {
+    width: 100%;
+  }
+}
+
+@media (max-width: 500px) {
+  .wk-mobile-1 {
+    width: 8.333333%;
+  }
+
+  .wk-mobile-2 {
+    width: 16.666667%;
+  }
+
+  .wk-mobile-3 {
+    width: 25%;
+  }
+
+  .wk-mobile-4 {
+    width: 33.333333%;
+  }
+
+  .wk-mobile-5 {
+    width: 41.666667%;
+  }
+
+  .wk-mobile-6 {
+    width: 50%;
+  }
+
+  .wk-mobile-7 {
+    width: 58.333333%;
+  }
+
+  .wk-mobile-8 {
+    width: 66.666667%;
+  }
+
+  .wk-mobile-9 {
+    width: 75%;
+  }
+
+  .wk-mobile-10 {
+    width: 83.333333%;
+  }
+
+  .wk-mobile-11 {
+    width: 91.666667%;
+  }
+
+  .wk-mobile-12 {
+    width: 100%;
+  }
+}
+
+    img#logo1 {
+        width: 14%;
+    }
+
+    </style>
+</head>
+<body>
+    <div class="atf_36">
+        <div class="imgBG">
+          <div class="responsive-container-block big-container">
+            <div class="responsive-container-block container">
+              <p class="text-blk landing10-head">
+                    DP MEMORIAL Homoeopathy Clinic
+              </p>
+              <img src="/logo.png" alt="" id="logo1">
+              <p class="text-blk landing10-subhead">
+                
+                A Doctor in New Delhi
+              </p>
+              <h3>Address</h3>
+              <br>
+              <p>
+                F 22/102, Shop Number 5, 6, Rohini Sector 3, Delhi - 110085 (Beside State Bank Of, Near Gopal Jee Bhaturewale)</p>
+      <br><br><h3>Phone<h3>
+        <br>
+      <p>7654602444 , 9716749169</p>
+      <br><br>
+              <div class="input-box">
+                <a class="btn" href="/appointment">
+                  <button class="landing-button">
+                    Book An Appointment
+                  </button>
+                </a>
+              </div>
+            </div>
+            <a id="iuy3u">
+              <img class="downArrowImg" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/cw2.svg">
+            </a>
+          </div>
+        </div>
+      </div>
+</body>
+</html>
