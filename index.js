@@ -11,7 +11,7 @@ app.set('view engine', 'ejs');
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
 
 const mongoose = require('mongoose');
-mongoose.connect('mongodb+srv://tanmay631:tanmay631@cluster0.y2nmtm5.mongodb.net/DPMHC', {
+mongoose.connect(`${process.env.mongourl}`, {
 useNewUrlParser: true});
 
 let arr=[];
@@ -146,7 +146,7 @@ app.post("/appointment",(req,res)=>{
 
     newAppointment.save()
 
-    res.render("success");
+    res.render("success")
 })
 
 
