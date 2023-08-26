@@ -22,7 +22,7 @@ var date = new Date();
 
 
 
- fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&channelId=UCJPg1xTH9GT6ZUAxoc2HUWQ&maxResults=10000&order=date&key=${process.env.API_KEY}`)
+ fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&channelId=UCJPg1xTH9GT6ZUAxoc2HUWQ&maxResults=10000&order=date&key=AIzaSyD7DRkKTIBkjOGkEnnJkAyz1DfXqqzUq58`)
 .then((response)=>{
     return response.json()
 
