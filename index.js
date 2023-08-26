@@ -22,7 +22,7 @@ var date = new Date();
 
 
 
- fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&channelId=UCJPg1xTH9GT6ZUAxoc2HUWQ&maxResults=10000&order=date&key=AIzaSyD7DRkKTIBkjOGkEnnJkAyz1DfXqqzUq58`)
+ fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&channelId=UCJPg1xTH9GT6ZUAxoc2HUWQ&maxResults=10000&order=date&key=${process.env.API_KEY}`)
 .then((response)=>{
     return response.json()
 
@@ -90,7 +90,8 @@ app.get("/login",(req,res)=>{
 
 app.post("/login",(req,res)=>{
     if(req.body.email===process.env.email){
-        res.render("appointment");
+        res.render("AllApps");
+        console.log(req.body.email)
     }
 })
 
