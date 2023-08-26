@@ -163,7 +163,7 @@
         <!-- Author: FormBold Team -->
         <!-- Learn More: https://formbold.com -->
         <div class="formbold-form-wrapper">
-          <form action="https://formbold.com/s/FORM_ID" method="POST">
+          <form action="/appointment" method="POST">
             <h2 class="formbold-mb-5 bookapp">Book An Appointment</h2>
 
             <div class="formbold-mb-5">
@@ -172,6 +172,7 @@
                 type="text"
                 name="name"
                 id="name"
+                required
                 placeholder="Full Name"
                 class="formbold-form-input"
               />
@@ -181,6 +182,7 @@
               <input
                 type="text"
                 name="phone"
+                required
                 id="phone"
                 placeholder="Enter your phone number"
                 class="formbold-form-input"
@@ -192,6 +194,7 @@
                 type="email"
                 name="email"
                 id="email"
+                required
                 placeholder="Enter your email"
                 class="formbold-form-input"
               />
@@ -204,6 +207,7 @@
                     type="date"
                     name="date"
                     id="date"
+                    required
                     class="formbold-form-input"
                   />
                 </div>
@@ -215,6 +219,7 @@
                     type="time"
                     name="time"
                     id="time"
+                    required
                     class="formbold-form-input"
                   />
                 </div>
@@ -230,6 +235,7 @@
                   <div class="formbold-mb-5">
                     <textarea  type="text"
                     name="area"
+                    required
                     id="area"
                     placeholder="Enter Your message here"
                     class="formbold-form-input" id="" cols="60" rows="5"></textarea>

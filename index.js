@@ -10,7 +10,9 @@ app.use(bodyparser.urlencoded({extended:true}));
 app.set('view engine', 'ejs');
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
 
-
+const mongoose = require('mongoose');
+mongoose.connect('mongodb+srv://tanmay631:tanmay631@cluster0.y2nmtm5.mongodb.net/DPMHC', {
+useNewUrlParser: true});
 
 let arr=[];
 
@@ -58,6 +60,35 @@ var date = new Date();
 })
 
 
+const schema ={
+    name: {
+        type: String,
+    required: true
+    },
+    Phone: {
+        type: String,
+    required: true
+    },
+    email: {
+        type: String,
+    required: true
+    },
+    date: {
+        type: String,
+    required: true
+    },
+    time: {
+        type: String,
+    required: true
+    },
+    message: {
+        type: String,
+    required: true
+    }
+
+}
+
+const DPMHC= mongoose.model("DPMHC",schema);
 
 
 app.get("/",(req,res)=>{
@@ -93,6 +124,29 @@ app.post("/login",(req,res)=>{
         res.render("AllApps");
         console.log(req.body.email)
     }
+})
+
+app.post("/appointment",(req,res)=>{
+    let name= req.body.name;
+    let phone=req.body.phone;
+    let email=req.body.email;
+    let date=req.body.date;
+    let time=req.body.time;
+    let message=req.body.message;
+    let newAppointment= new DPMHC({
+    name: name,
+    Phone: phone,
+    email: email,
+    date: date,
+    time: time,
+    message: message
+        
+    });
+    console.log(name);
+
+    newAppointment.save()
+
+    res.render("success");
 })
 
 
