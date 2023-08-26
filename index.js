@@ -18,22 +18,27 @@ let arr=[];
 
 let url=[];
 let heading=[];
+let tnils=[];
 let published=[];
 var date = new Date();
 
 
 
 
- fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&channelId=UCJPg1xTH9GT6ZUAxoc2HUWQ&maxResults=10000&order=date&key=AIzaSyD7DRkKTIBkjOGkEnnJkAyz1DfXqqzUq58`)
+
+ fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&channelId=UCJPg1xTH9GT6ZUAxoc2HUWQ&maxResults=10000&order=date&key=${process.env.API_KEY}`)
 .then((response)=>{
     return response.json()
 
     
 }).then( (data)=>{
     
+    
     let items=data.items
     // console.log(items);
     items.forEach(element => {
+        tnils.push(element.snippet.thumbnails.high.url);
+
         arr.push(element.id.videoId)
         url.push( "https://www.youtube.com/embed/" + element.id.videoId);
         
@@ -108,7 +113,7 @@ app.get("/appointment",(req,res)=>{
 })
 
 app.get("/videos",(req,res)=>{
-   res.render("videos",{newListItem1: url, newListItem2:heading, newListItem3: published, front: url[0] , frontHeading: heading[0]});
+   res.render("videos",{newListItem1: tnils, newListItem2:heading, newListItem3: published, front: url[0] , frontHeading: heading[0],newListItem4:url});
 })
 
 app.get("/review",(req,res)=>{
