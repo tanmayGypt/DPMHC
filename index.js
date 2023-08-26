@@ -20,7 +20,7 @@ let url=[];
 let heading=[];
 let tnils=[];
 let published=[];
-var date = new Date();
+
 
 
 
@@ -66,34 +66,30 @@ var date = new Date();
 
 
 const schema ={
-    name: {
-        type: String,
-    required: true
-    },
-    Phone: {
-        type: String,
-    required: true
-    },
-    email: {
-        type: String,
-    required: true
-    },
-    date: {
-        type: String,
-    required: true
-    },
-    time: {
-        type: String,
-    required: true
-    },
-    message: {
-        type: String,
-    required: true
-    }
+    name: String,
+    Phone: String
+    
+    ,
+    email: String
+    
+    ,
+    date:String,
+    time: String,
+    message: String,
+    
 
 }
 
+//Appointment Fetch;
+let Name=[]
+let Email=[]
+let Date=[]
+let Time=[]
+let Message=[]
+let Phone =[]
+let ID=[]
 const DPMHC= mongoose.model("DPMHC",schema);
+
 
 
 app.get("/",(req,res)=>{
@@ -125,11 +121,16 @@ app.get("/login",(req,res)=>{
 })
 
 app.post("/login",(req,res)=>{
-    if(req.body.email===process.env.email){
-        res.render("AllApps");
-        console.log(req.body.email)
-    }
-})
+    if(req.body.email===process.env.email && req.body.password===process.env.password){
+                 
+        res.render("AllApps", { Name: Name, Message: Message, Date: Date, Time: Time, Email: Email, Phone:Phone});
+          }
+
+          
+
+
+    })
+
 
 app.post("/appointment",(req,res)=>{
     let name= req.body.name;
@@ -138,6 +139,7 @@ app.post("/appointment",(req,res)=>{
     let date=req.body.date;
     let time=req.body.time;
     let message=req.body.message;
+    
     let newAppointment= new DPMHC({
     name: name,
     Phone: phone,
@@ -149,10 +151,34 @@ app.post("/appointment",(req,res)=>{
     });
     console.log(name);
 
-    newAppointment.save()
+    newAppointment.save((err,room)=>{
+        ID.push(room.id);
+
+    })
 
     res.render("success")
 })
+
+DPMHC.find().then(function(foundItems){
+
+    foundItems.forEach(element => {
+        Name.push(element.name)
+        Phone.push(element.Phone)
+        Email.push(element.email)
+        Message.push(element.message)
+        Time.push(element.time)
+        Date.push(element.date)
+        
+        
+        
+    });
+
+    
+  })
+
+  .catch(function(err){
+    console.log(err);
+  });
 
 
 let port=process.env.PORT || 3000;
@@ -161,3 +187,4 @@ app.listen(port,()=>{
     console.log("Server started");
 })
 
+console.log(ID[0]);

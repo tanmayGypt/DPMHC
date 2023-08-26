@@ -1,380 +1,209 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>DP Memorial Homoeopathy Clinic</title>
   <style>
-    /* Reset */
-*,
-*::after,
-*::before {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html {
-  font-size: 62.5%;
-}
-@media (max-width: 75em) {
-  html {
-    font-size: 56.25%;
+    article {
+      --img-scale: 1.001;
+      --title-color: black;
+      --link-icon-translate: -20px;
+      --link-icon-opacity: 0;
+      position: relative;
+      border-radius: 16px;
+      box-shadow: none;
+      background: #fff;
+      transform-origin: center;
+      transition: all 0.4s ease-in-out;
+      overflow: hidden;
+    }
+    
+    article a::after {
+      position: absolute;
+      inset-block: 0;
+      inset-inline: 0;
+      cursor: pointer;
+      content: "";
+    }
+    
+    /* basic article elements styling */
+    article h2 {
+      margin: 0 0 18px 0;
+      font-family: "Bebas Neue", cursive;
+      font-size: 1.9rem;
+      letter-spacing: 0.06em;
+      color: var(--title-color);
+      transition: color 0.3s ease-out;
+    }
+    
+    figure {
+      margin: 0;
+      padding: 0;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+    }
+    
+    article img {
+      max-width: 100%;
+      transform-origin: center;
+      transform: scale(var(--img-scale));
+      transition: transform 0.4s ease-in-out;
+    }
+    
+    .article-body {
+      padding: 24px;
+    }
+    
+    article a {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+      color: #28666e;
+    }
+    
+    article a:focus {
+      outline: 1px dotted #28666e;
+    }
+    
+    article a .icon {
+      min-width: 24px;
+      width: 24px;
+      height: 24px;
+      margin-left: 5px;
+      transform: translateX(var(--link-icon-translate));
+      opacity: var(--link-icon-opacity);
+      transition: all 0.3s;
+    }
+    
+    /* using the has() relational pseudo selector to update our custom properties */
+    article:has(:hover, :focus) {
+      --img-scale: 1.1;
+      --title-color: #28666e;
+      --link-icon-translate: 0;
+      --link-icon-opacity: 1;
+      box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+    }
+    
+    
+    /************************ 
+    Generic layout (demo looks)
+    **************************/
+    
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+    
+    body {
+      margin: 0;
+      padding: 48px 0;
+      font-family: "Figtree", sans-serif;
+      font-size: 1.2rem;
+      line-height: 1.6rem;
+      background-image: linear-gradient(45deg, #7c9885, #b5b682);
+      min-height: 100vh;
+    }
+    
+    .articles {
+      display: grid;
+      max-width: 1200px;
+      margin-inline: auto;
+      padding-inline: 24px;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 24px;
+    }
+    
+    @media screen and (max-width: 960px) {
+      article {
+        container: card/inline-size;
+      }
+      .article-body p {
+        display: none;
+      }
+    }
+    
+    @container card (min-width: 380px) {
+      .article-wrapper {
+        display: grid;
+        grid-template-columns: 100px 1fr;
+        gap: 16px;
+      }
+      .article-body {
+        padding-left: 0;
+      }
+      figure {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+      }
+      figure img {
+        height: 100%;
+        aspect-ratio: 1;
+        object-fit: cover;
+      }
+    }
+    
+    .sr-only:not(:focus):not(:active) {
+      clip: rect(0 0 0 0); 
+      clip-path: inset(50%);
+      height: 1px;
+      overflow: hidden;
+      position: absolute;
+      white-space: nowrap; 
+      width: 1px;
+    }
+    button {
+      position: relative;
+      bottom: 14px;
+      left: 135px;
+      border-radius: 8px;
+      width: 84px;
+      height: 29px;
   }
-}
-@media (max-width: 56.25em) {
-  html {
-    font-size: 50%;
-  }
-}
-@media (min-width: 112.5em) {
-  html {
-    font-size: 75%;
-  }
-}
-
-body {
-  height: 100vh;
-  background-color: #ece0e8;
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.artboard {
-  display: flex;
-    flex-flow: row;
-    align-items: center;
-    justify-content: center;
-    padding: 4rem;
-    height: 100%;
+  #home{
     position: relative;
-    width: 32%;
-}
-@media (max-width: 37.5em) {
-  .artboard {
-    padding: 1rem;
+    margin-left: 37%;
+    width: 9rem;
+    height: 3rem;
+    background-color: gainsboro;
   }
-}
 
-.card {
-  flex: initial;
-  position: relative;
-  height: 52rem;
-  width: 48rem;
-  -moz-perspective: 200rem;
-  perspective: 200rem;
-  margin: 2rem;
-}
-.card__side {
-  height: 52rem;
-  transition: all 0.8s ease;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  -webkit-backface-visibility: hidden;
-  /* We don't want to see the back part of the element. */
-  backface-visibility: hidden;
-  /* We don't want to see the back part of the element. */
-  border-radius: 3px;
-  overflow: hidden;
-  /* The image is overflowing the parent. */
-  box-shadow: 0 2rem 6rem rgba(0, 0, 0, 0.15);
-}
-.card__side--front {
-  background-image: linear-gradient(to right bottom, rgba(30, 11, 54, 0.65), rgba(202, 55, 130, 0.7)), url(https://cdn.spacetelescope.org/archives/images/screen/heic0406a.jpg);
-}
-.card__side--back {
-  background-color: #fff;
-  transform: rotateY(180deg);
-}
-.card:hover .card__side--back {
-  transform: rotateY(0);
-}
-.card:hover .card__side--front {
-  transform: rotateY(-180deg);
-}
-.card__theme {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  top: 54%;
-  width: 90%;
-  text-align: center;
-}
-.card__theme-box {
-  color: #fff;
-  margin-bottom: 8rem;
-}
-.card__subject {
-  font-family: "Inconsolata", monospace;
-  letter-spacing: 0.8rem;
-  font-size: 1.6rem;
-  text-transform: uppercase;
-  margin-bottom: 1rem;
-}
-.card__title {
-  font-family: "VT323", monospace;
-  text-transform: uppercase;
-  font-size: 6rem;
-  font-weight: 100;
-}
-.card__cover {
-  position: relative;
-  background-size: cover;
-  height: 14rem;
-  -webkit-clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
-  clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
-  border-top-left-radius: 3px;
-  border-top-right-radius: 3px;
-  background-image: linear-gradient(to top right, rgba(30, 11, 54, 0.65), rgba(202, 55, 130, 0.65)), url(https://cdn.spacetelescope.org/archives/images/screen/heic0406a.jpg);
-}
-.card__heading {
-  text-align: center;
-  color: #fff;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 75%;
-}
-.card__heading-span {
-  font-family: "VT323", monospace;
-  font-size: 4.2rem;
-  font-weight: 300;
-  text-transform: uppercase;
-  padding: 1rem 1.5rem;
-  color: #fff;
-}
-.card__details {
-  font-family: "Inconsolata", monospace;
-  padding: 4rem 2rem;
-}
-.card__details ul {
-  list-style: none;
-  width: 80%;
-  margin: 0 auto;
-}
-.card__details ul li {
-  text-align: center;
-  font-size: 1.8rem;
-  padding: 1rem;
-}
-.card__details ul li:not(:last-child) {
-  border-bottom: 1px solid #eee;
-}
-@media only screen and (max-width: 37.5em), only screen and (hover: none) {
-  .card {
-    height: auto;
-    border-radius: 3px;
-    background-color: #fff;
-    box-shadow: 0 2rem 6rem rgba(0, 0, 0, 0.15);
+  button:hover{
+    opacity: 0.7;
+    background-color: lightskyblue;
   }
-  .card__side {
-    height: auto;
-    position: relative;
-    box-shadow: none;
-  }
-  .card__side--front {
-    clip-path: polygon(0 15%, 100% 0, 100% 100%, 0 100%);
-  }
-  .card__side--back {
-    transform: rotateY(0);
-  }
-  .card:hover .card__side--front {
-    transform: rotateY(0);
-  }
-  .card__details {
-    padding: 3rem 2rem;
-  }
-  .card__theme {
-    position: relative;
-    top: 0;
-    left: 0;
-    transform: translate(0);
-    width: 100%;
-    padding: 5rem 4rem 1.5rem 4rem;
-    text-align: right;
-  }
-  .card__theme-box {
-    margin-bottom: 1.5rem;
-  }
-  .card__title {
-    font-size: 4rem;
-  }
-}
   </style>
 </head>
 <body>
-  <div class="artboard">
-    <div class="card">
-   
-     <div class="card__side card__side--back">
-      <div class="card__cover">
-       <h4 class="card__heading">
-        <span class="card__heading-span">Skill Set</span>
-       </h4>
+  <a href="/home"><button id="home">Home</button></a>
+  <section class="articles">
+    
+    <% for(let i=0;i<Name.length;i++){ %>
+    <article>
+  
+      <div class="article-wrapper">
+        
+        <div class="article-body">
+          <h2><%= Name[i] %></h2>
+          <p>Message: 
+            <%= Message[i] %>
+          </p>
+          <p>Date: <%= Date[i] %></p>
+          <p>Time: <%= Time[i] %></p>
+          <p>Email: <%= Email[i] %></p>
+          <p>Phone: <%= Phone[i] %></p>
+         
+        </div>
       </div>
-      <div class="card__details">
-       <ul>
-        <li>Advanced JS and CSS</li>
-        <li>JS/CSS Preprocessors</li>
-        <li>JS Frameworks</li>
-        <li>Advanced Animations</li>
-        <li>Deployment Pipelines</li>
-        <li>Large Apps Architectures</li>
-        <li>Naming Conventions</li>
-       </ul>
-      </div>
-     </div>
+      <form action="/delete" method="post"><button type="submit" name="SS">Completed</button></form>
+      
+    </article>
+    
+    <% } %>
    
-     <div class="card__side card__side--front">
-      <div class="card__theme">
-       <div class="card__theme-box">
-        <p class="card__subject">Web Developer</p>
-        <p class="card__title">Hello World!</p>
-       </div>
-      </div>
-     </div>
-   
-    </div>
-   </div>
-
-   <div class="artboard">
-    <div class="card">
-   
-     <div class="card__side card__side--back">
-      <div class="card__cover">
-       <h4 class="card__heading">
-        <span class="card__heading-span">Skill Set</span>
-       </h4>
-      </div>
-      <div class="card__details">
-       <ul>
-        <li>Advanced JS and CSS</li>
-        <li>JS/CSS Preprocessors</li>
-        <li>JS Frameworks</li>
-        <li>Advanced Animations</li>
-        <li>Deployment Pipelines</li>
-        <li>Large Apps Architectures</li>
-        <li>Naming Conventions</li>
-       </ul>
-      </div>
-     </div>
-   
-     <div class="card__side card__side--front">
-      <div class="card__theme">
-       <div class="card__theme-box">
-        <p class="card__subject">Web Developer</p>
-        <p class="card__title">Hello World!</p>
-       </div>
-      </div>
-     </div>
-   
-    </div>
-   </div>
-
-   <div class="artboard">
-    <div class="card">
-   
-     <div class="card__side card__side--back">
-      <div class="card__cover">
-       <h4 class="card__heading">
-        <span class="card__heading-span">Skill Set</span>
-       </h4>
-      </div>
-      <div class="card__details">
-       <ul>
-        <li>Advanced JS and CSS</li>
-        <li>JS/CSS Preprocessors</li>
-        <li>JS Frameworks</li>
-        <li>Advanced Animations</li>
-        <li>Deployment Pipelines</li>
-        <li>Large Apps Architectures</li>
-        <li>Naming Conventions</li>
-       </ul>
-      </div>
-     </div>
-   
-     <div class="card__side card__side--front">
-      <div class="card__theme">
-       <div class="card__theme-box">
-        <p class="card__subject">Web Developer</p>
-        <p class="card__title">Hello World!</p>
-       </div>
-      </div>
-     </div>
-   
-    </div>
-   </div>
-
-   <div class="artboard">
-    <div class="card">
-   
-     <div class="card__side card__side--back">
-      <div class="card__cover">
-       <h4 class="card__heading">
-        <span class="card__heading-span">Skill Set</span>
-       </h4>
-      </div>
-      <div class="card__details">
-       <ul>
-        <li>Advanced JS and CSS</li>
-        <li>JS/CSS Preprocessors</li>
-        <li>JS Frameworks</li>
-        <li>Advanced Animations</li>
-        <li>Deployment Pipelines</li>
-        <li>Large Apps Architectures</li>
-        <li>Naming Conventions</li>
-       </ul>
-      </div>
-     </div>
-   
-     <div class="card__side card__side--front">
-      <div class="card__theme">
-       <div class="card__theme-box">
-        <p class="card__subject">Web Developer</p>
-        <p class="card__title">Hello World!</p>
-       </div>
-      </div>
-     </div>
-   
-    </div>
-   </div>
-
-   <div class="artboard">
-    <div class="card">
-   
-     <div class="card__side card__side--back">
-      <div class="card__cover">
-       <h4 class="card__heading">
-        <span class="card__heading-span">Skill Set</span>
-       </h4>
-      </div>
-      <div class="card__details">
-       <ul>
-        <li>Advanced JS and CSS</li>
-        <li>JS/CSS Preprocessors</li>
-        <li>JS Frameworks</li>
-        <li>Advanced Animations</li>
-        <li>Deployment Pipelines</li>
-        <li>Large Apps Architectures</li>
-        <li>Naming Conventions</li>
-       </ul>
-      </div>
-     </div>
-   
-     <div class="card__side card__side--front">
-      <div class="card__theme">
-       <div class="card__theme-box">
-        <p class="card__subject">Web Developer</p>
-        <p class="card__title">Hello World!</p>
-       </div>
-      </div>
-     </div>
-   
-    </div>
-   </div>
+  </section>
 </body>
 </html>
