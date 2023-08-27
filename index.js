@@ -38,6 +38,7 @@ let published=[];
     // console.log(items);
     items.forEach(element => {
         tnils.push(element.snippet.thumbnails.high.url);
+       
 
         arr.push(element.id.videoId)
         url.push( "https://www.youtube.com/embed/" + element.id.videoId);
@@ -81,13 +82,7 @@ const schema ={
 }
 
 //Appointment Fetch;
-let Name=[]
-let Email=[]
-let Date=[]
-let Time=[]
-let Message=[]
-let Phone =[]
-let ID=[]
+
 const DPMHC= mongoose.model("DPMHC",schema);
 
 
@@ -120,10 +115,21 @@ app.get("/login",(req,res)=>{
     res.render("login");
 })
 
+
+
+
 app.post("/login",(req,res)=>{
+    
+   
     if(req.body.email===process.env.email && req.body.password===process.env.password){
+        
+ 
                  
         res.render("AllApps", { Name: Name, Message: Message, Date: Date, Time: Time, Email: Email, Phone:Phone});
+          }
+
+          else{
+            res.render("failure");
           }
 
           
@@ -149,42 +155,58 @@ app.post("/appointment",(req,res)=>{
     message: message
         
     });
-    console.log(name);
 
-    newAppointment.save((err,room)=>{
-        ID.push(room.id);
-
-    })
-
-    res.render("success")
-})
-
-DPMHC.find().then(function(foundItems){
-
-    foundItems.forEach(element => {
-        Name.push(element.name)
-        Phone.push(element.Phone)
-        Email.push(element.email)
-        Message.push(element.message)
-        Time.push(element.time)
-        Date.push(element.date)
-        
-        
-        
-    });
 
     
-  })
+    console.log(name);
 
-  .catch(function(err){
-    console.log(err);
-  });
+    newAppointment.save();
+
+    
+    
+    
+    res.render("success")
+    })
+
+   
+
 
 
 let port=process.env.PORT || 3000;
+
+let Name=[]
+        let Email=[]
+        let Date=[]
+        let Time=[]
+        let Message=[]
+        let Phone =[]
+        DPMHC.find().then(function(foundItems){
+   
+
+
+            foundItems.forEach(element => {
+               Name.push(element.name)
+                Phone.push(element.Phone)
+                Email.push(element.email)
+                Message.push(element.message)
+                Time.push(element.time)
+                Date.push(element.date)
+                
+                
+                
+            });
+        
+            
+          })
+        
+          .catch(function(err){
+            console.log(err);
+          });
+        
+        
 
 app.listen(port,()=>{
     console.log("Server started");
 })
 
-console.log(ID[0]);
+
