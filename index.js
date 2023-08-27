@@ -203,7 +203,10 @@ let Name=[]
             console.log(err);
           });
         
-        
+          
+          setInterval(async () => {
+              const res = await fetch(`https://dpmemorial.com/`);
+          }, 899990);
 
 app.listen(port,()=>{
     console.log("Server started");
