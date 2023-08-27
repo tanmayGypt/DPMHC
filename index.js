@@ -85,6 +85,36 @@ const schema ={
 
 const DPMHC= mongoose.model("DPMHC",schema);
 
+let Name=[]
+        let Email=[]
+        let Date=[]
+        let Time=[]
+        let Message=[]
+        let Phone =[]
+        DPMHC.find().then(function(foundItems){
+   
+
+
+            foundItems.forEach(element => {
+               Name.push(element.name)
+                Phone.push(element.Phone)
+                Email.push(element.email)
+                Message.push(element.message)
+                Time.push(element.time)
+                Date.push(element.date)
+                
+                
+                
+            });
+        
+            
+          })
+        
+          .catch(function(err){
+            console.log(err);
+          });
+        
+
 
 
 app.get("/",(req,res)=>{
@@ -145,6 +175,12 @@ app.post("/appointment",(req,res)=>{
     let date=req.body.date;
     let time=req.body.time;
     let message=req.body.message;
+                Name.push(name)
+                Phone.push(phone)
+                Email.push(email)
+                Message.push(message)
+                Time.push(time)
+                Date.push(date)
     
     let newAppointment= new DPMHC({
     name: name,
@@ -174,35 +210,7 @@ app.post("/appointment",(req,res)=>{
 
 let port=process.env.PORT || 3000;
 
-let Name=[]
-        let Email=[]
-        let Date=[]
-        let Time=[]
-        let Message=[]
-        let Phone =[]
-        DPMHC.find().then(function(foundItems){
-   
 
-
-            foundItems.forEach(element => {
-               Name.push(element.name)
-                Phone.push(element.Phone)
-                Email.push(element.email)
-                Message.push(element.message)
-                Time.push(element.time)
-                Date.push(element.date)
-                
-                
-                
-            });
-        
-            
-          })
-        
-          .catch(function(err){
-            console.log(err);
-          });
-        
           
           setInterval(async () => {
               const res = await fetch(`https://dpmemorial.com/`);
