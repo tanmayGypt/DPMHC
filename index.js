@@ -129,6 +129,14 @@ app.get("/about",(req,res)=>{
     res.render("about");
 })
 
+app.get("/about-us",(req,res)=>{
+    res.render("about");
+})
+
+app.get("/contact-us",(req,res)=>{
+    res.render("/appointmet")
+})
+
 app.get("/appointment",(req,res)=>{
     res.render("appointment");
 })
