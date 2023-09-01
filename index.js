@@ -32,8 +32,6 @@ let published=[];
 
     
 }).then( (data)=>{
-    
-    
     let items=data.items
     // console.log(items);
     items.forEach(element => {
@@ -54,13 +52,7 @@ let published=[];
 
        published.push("Publish Date: " + day + "-" + month + "-" +year);
 
-      
-       
-        
-    
-       
-    
-      
+  
     })
 
 })
@@ -212,14 +204,8 @@ app.post("/appointment",(req,res)=>{
     res.render("success")
     })
 
-   
-
-
-
 let port=process.env.PORT || 3000;
-
-
-          
+    
           setInterval(async () => {
               const res = await fetch(`https://dpmemorial.com/`);
           }, 899990);
