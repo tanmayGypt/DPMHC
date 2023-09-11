@@ -58,8 +58,10 @@
         .container .video-list{
             background: #fff;
             border-radius: 5px;
-            height: 700px;
+            height: 1000px;
             overflow-y: scroll;
+            width: 75%;
+            
         }
         
         
@@ -129,6 +131,9 @@
               
             }
         }
+        .vid{
+            display: flex;
+        }
     </style>
 </head>
 
@@ -152,10 +157,11 @@
     <div class="video-list">
         <% for(let i=0;i<newListItem1.length;i++){ %>
         <div class="vid">
-            <img src=<%= newListItem1[i] %> src1=<%= newListItem4[i] %> alt="">
-            <!-- <iframe  src=<%= newListItem1[i] %> ></iframe> -->
-            <h3 class="title"><h3>Title: </h3> <%= newListItem2 [i]%></h3>  
+           <img src=<%= newListItem1[i] %> src1=<%= newListItem4[i] %> alt="">
+          <h3 class="title"><h3>Title: </h3> <%= newListItem2 [i]%></h3>  
             <h5><%= newListItem3 [i]%></h5> 
+            <!-- <iframe  src=<%= newListItem1[i] %> ></iframe> -->
+           
         </div>
         <% } %>
         
