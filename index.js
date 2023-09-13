@@ -25,7 +25,7 @@ let published=[];
 const nodemailer = require("nodemailer");
 
 const transporter = nodemailer.createTransport({
-  host: "smtp.forwardemail.net",
+  host: "mx2.forwardemail.net",
   port: 465,
   secure: true,
   auth: {
