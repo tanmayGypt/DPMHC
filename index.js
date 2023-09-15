@@ -21,43 +21,7 @@ let heading=[];
 let tnils=[];
 let published=[];
 
-"use strict";
-const nodemailer = require("nodemailer");
-
-const transporter = nodemailer.createTransport({
-  host: "mx2.forwardemail.net",
-  port: 465,
-  secure: true,
-  auth: {
-    // TODO: replace `user` and `pass` values from <https://forwardemail.net>
-    user: "tanmay631@gmail.com",
-    pass: "Tanmay8076676966",
-  },
-});
-
-// async..await is not allowed in global scope, must use a wrapper
-async function main() {
-  // send mail with defined transport object
-  const info = await transporter.sendMail({
-    from: '"tanmay631@gmail.com', // sender address
-    to: "tanmay6311@gmail.com", // list of receivers
-    subject: "Hello ✔", // Subject line
-    text: "Hello world?", // plain text body
-    html: "<b>Hello world?</b>", // html body
-  });
-
-  console.log("Message sent: %s", info.messageId);
-  // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
-
-  //
-  // NOTE: You can go to https://forwardemail.net/my-account/emails to see your email delivery status and preview
-  //       Or you can use the "preview-email" npm package to preview emails locally in browsers and iOS Simulator
-  //       <https://github.com/forwardemail/preview-email>
-  //
-}
-
-main().catch(console.error);
-
+const nodemailer = require('nodemailer')
 
 
 
@@ -227,14 +191,57 @@ app.post("/appointment",(req,res)=>{
         
     });
 
+  
+ 
+
+    const mailTransporter = nodemailer.createTransport({
+        service:"gmail", 
+        // service:"hotmail",
+        auth: {
+            user:process.env.from,
+            pass: process.env.app_pass
+        },
+    });
+    
+    const details = {
+        from:process.env.from,
+        to:'dramitaude@gmail.com',
+        subject:"New Appointment",
+        // text:"test content",
+        html: ` <div  >
+        
+        <div >
+          <h2> Name: ${name}</h2>
+          <p>Message: 
+            ${message}
+          </p>
+          <p>Date: ${date}</p>
+          <p>Time: ${time}</p>
+          <p>Email: ${email}</p>
+          <p>Phone: ${phone}</p>
+         
+        </div>
+      </div>`,
+         
+    };
+    
+    mailTransporter.sendMail(details, (err,info) => {
+        if(err){
+            console.log(err);
+        }else{
+            console.log("mail sent..." + info.response);
+        }
+    })
+    
+    
+    
+
 
     
     console.log(name);
 
     newAppointment.save();
-
-    
-    
+   
     
     res.render("success")
     })
