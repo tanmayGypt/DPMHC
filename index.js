@@ -25,36 +25,6 @@ const nodemailer = require('nodemailer')
 
 
 
- fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&channelId=UCJPg1xTH9GT6ZUAxoc2HUWQ&maxResults=10000&order=date&key=${process.env.API_KEY}`)
-.then((response)=>{
-    return response.json()
-
-    
-}).then( (data)=>{
-    let items=data.items
-    // console.log(items);
-    items.forEach(element => {
-        tnils.push(element.snippet.thumbnails.high.url);
-       
-
-        arr.push(element.id.videoId)
-        url.push( "https://www.youtube.com/embed/" + element.id.videoId);
-        
-    
-    });
-    items.forEach(element1=>{
-        heading.push(element1.snippet.title);
-       let year = element1.snippet.publishTime.substring(0,4);
-       let month=element1.snippet.publishTime.substring(5,7);
-       let day= element1.snippet.publishTime.substring(8,10);
-    //    console.log(day);
-
-       published.push("Publish Date: " + day + "-" + month + "-" +year);
-
-  
-    })
-
-})
 
 
 const schema ={
@@ -74,7 +44,86 @@ const schema ={
 
 //Appointment Fetch;
 
-const DPMHC= mongoose.model("DPMHC",schema);
+
+
+app.get("/",(req,res)=>{
+    res.render("homepage");
+})
+
+app.get("/home",(req,res)=>{
+    res.render("homepage");
+})
+
+app.get("/about",(req,res)=>{
+    res.render("about");
+})
+
+app.get("/about-us",(req,res)=>{
+    res.render("about");
+})
+
+app.get("/contact-us",(req,res)=>{
+    res.render("/appointmet")
+})
+
+app.get("/appointment",(req,res)=>{
+    res.render("appointment");
+})
+
+app.get("/videos",(req,res)=>{
+
+    fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&channelId=UCJPg1xTH9GT6ZUAxoc2HUWQ&maxResults=10000&order=date&key=${process.env.API_KEY}`)
+    .then((response)=>{
+        return response.json()
+    
+        
+    }).then( (data)=>{
+        let items=data.items
+        // console.log(items);
+        items.forEach(element => {
+            tnils.push(element.snippet.thumbnails.high.url);
+           
+    
+            arr.push(element.id.videoId)
+            url.push( "https://www.youtube.com/embed/" + element.id.videoId);
+            
+        
+        });
+        items.forEach(element1=>{
+            heading.push(element1.snippet.title);
+           let year = element1.snippet.publishTime.substring(0,4);
+           let month=element1.snippet.publishTime.substring(5,7);
+           let day= element1.snippet.publishTime.substring(8,10);
+        //    console.log(day);
+    
+           published.push("Publish Date: " + day + "-" + month + "-" +year);
+    
+      
+        })
+    
+    })
+    
+   res.render("videos",{newListItem1: tnils, newListItem2:heading, newListItem3: published, front: url[0] , frontHeading: heading[0],newListItem4:url});
+})
+
+app.get("/review",(req,res)=>{
+    res.render("review")
+})
+
+app.get("/login",(req,res)=>{
+    res.render("login");
+})
+
+
+
+
+app.post("/login",(req,res)=>{
+    
+   
+    if(req.body.email===process.env.email && req.body.password===process.env.password){
+
+
+        const DPMHC= mongoose.model("DPMHC",schema);
 
 let Name=[]
         let Email=[]
@@ -107,51 +156,6 @@ let Name=[]
         
 
 
-
-app.get("/",(req,res)=>{
-    res.render("homepage");
-})
-
-app.get("/home",(req,res)=>{
-    res.render("homepage");
-})
-
-app.get("/about",(req,res)=>{
-    res.render("about");
-})
-
-app.get("/about-us",(req,res)=>{
-    res.render("about");
-})
-
-app.get("/contact-us",(req,res)=>{
-    res.render("/appointmet")
-})
-
-app.get("/appointment",(req,res)=>{
-    res.render("appointment");
-})
-
-app.get("/videos",(req,res)=>{
-   res.render("videos",{newListItem1: tnils, newListItem2:heading, newListItem3: published, front: url[0] , frontHeading: heading[0],newListItem4:url});
-})
-
-app.get("/review",(req,res)=>{
-    res.render("review")
-})
-
-app.get("/login",(req,res)=>{
-    res.render("login");
-})
-
-
-
-
-app.post("/login",(req,res)=>{
-    
-   
-    if(req.body.email===process.env.email && req.body.password===process.env.password){
-        
  
                  
         res.render("AllApps", { Name: Name, Message: Message, Date: Date, Time: Time, Email: Email, Phone:Phone});
