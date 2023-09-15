@@ -42,7 +42,31 @@ const schema ={
 
 }
 
+const DPMHC= mongoose.model("DPMHC",schema);
 //Appointment Fetch;
+DPMHC.find().then(function(foundItems){
+
+
+
+    foundItems.forEach(element => {
+       Name.push(element.name)
+        Phone.push(element.Phone)
+        Email.push(element.email)
+        Message.push(element.message)
+        Time.push(element.time)
+        Date.push(element.date)
+        
+        
+        
+    });
+
+    
+  })
+
+  .catch(function(err){
+    console.log(err);
+  });
+
 
 
 
@@ -114,47 +138,26 @@ app.get("/login",(req,res)=>{
     res.render("login");
 })
 
-
+let Name=[]
+let Email=[]
+let Date=[]
+let Time=[]
+let Message=[]
+let Phone =[]
 
 
 app.post("/login",(req,res)=>{
+
+        
+
+
+
+
     
    
     if(req.body.email===process.env.email && req.body.password===process.env.password){
 
-
-        const DPMHC= mongoose.model("DPMHC",schema);
-
-let Name=[]
-        let Email=[]
-        let Date=[]
-        let Time=[]
-        let Message=[]
-        let Phone =[]
-        DPMHC.find().then(function(foundItems){
-   
-
-
-            foundItems.forEach(element => {
-               Name.push(element.name)
-                Phone.push(element.Phone)
-                Email.push(element.email)
-                Message.push(element.message)
-                Time.push(element.time)
-                Date.push(element.date)
-                
-                
-                
-            });
-        
-            
-          })
-        
-          .catch(function(err){
-            console.log(err);
-          });
-        
-
+       
 
  
                  
