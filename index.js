@@ -87,12 +87,14 @@ app.get("/about-us",(req,res)=>{
 })
 
 app.get("/contact-us",(req,res)=>{
-    res.render("/appointmet")
+    res.render("/appointment")
 })
 
 app.get("/appointment",(req,res)=>{
     res.render("appointment");
 })
+
+
 
 app.get("/videos",(req,res)=>{
 
@@ -212,7 +214,7 @@ app.post("/appointment",(req,res)=>{
     
     const details = {
         from:process.env.from,
-        to:'dramitaude@gmail.com',
+        to:process.env.to,
         subject:"New Appointment",
         // text:"test content",
         html: ` <div  >
