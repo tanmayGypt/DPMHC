@@ -23,6 +23,12 @@ let published=[];
 
 const nodemailer = require('nodemailer')
 
+let Name=[]
+let Email=[]
+let Date=[]
+let Time=[]
+let Message=[]
+let Phone =[]
 
 
 
@@ -60,6 +66,49 @@ DPMHC.find().then(function(foundItems){
         
     });
 
+
+let Name1=[];
+let Phone1=[];
+let Email1=[];
+let Message1=[];
+let Time1=[];
+let Date1=[];
+
+
+let len=Name.length;
+
+
+for (let index = Name.length-1; index >= 0; index--) {
+    Name1.push(Name[index]);
+    Phone1.push(Phone[index]);
+    Email1.push(Email[index]);
+    Message1.push(Message[index]);
+    Time1.push(Time[index]);
+    Date1.push(Date[index]);
+  
+  
+  
+    
+  }
+   Name=[]
+ Email=[]
+ Date=[]
+ Time=[]
+ Message=[]
+ Phone =[]
+  
+  for (let index = 0; index < len; index++) {
+      Name.push(Name1[index]);
+      Phone.push(Phone1[index]);
+      Email.push(Email1[index]);
+      Message.push(Message1[index]);
+      Time.push(Time1[index]);
+      Date.push(Date1[index]);
+    
+    
+    
+      
+    }
     
   })
 
@@ -67,6 +116,8 @@ DPMHC.find().then(function(foundItems){
     console.log(err);
   });
 
+  
+ 
 
 
 
@@ -140,12 +191,7 @@ app.get("/login",(req,res)=>{
     res.render("login");
 })
 
-let Name=[]
-let Email=[]
-let Date=[]
-let Time=[]
-let Message=[]
-let Phone =[]
+
 
 
 app.post("/login",(req,res)=>{
@@ -158,7 +204,7 @@ app.post("/login",(req,res)=>{
     
    
     if(req.body.email===process.env.email && req.body.password===process.env.password){
-
+       
        
 
  
@@ -255,11 +301,15 @@ app.post("/appointment",(req,res)=>{
     res.render("success")
     })
 
+    
+
 let port=process.env.PORT || 3000;
     
           setInterval(async () => {
               const res = await fetch(`https://dpmemorial.com/`);
           }, 899990);
+
+
 
 app.listen(port,()=>{
     console.log("Server started");
