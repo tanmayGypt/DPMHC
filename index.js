@@ -53,44 +53,18 @@ DPMHC.find()
       Time.push(element.time);
       Date.push(element.date);
     });
-
-    let Name1 = [];
-    let Phone1 = [];
-    let Email1 = [];
-    let Message1 = [];
-    let Time1 = [];
-    let Date1 = [];
-
-    let len = Name.length;
-
-    for (let index = Name.length - 1; index >= 0; index--) {
-      Name1.push(Name[index]);
-      Phone1.push(Phone[index]);
-      Email1.push(Email[index]);
-      Message1.push(Message[index]);
-      Time1.push(Time[index]);
-      Date1.push(Date[index]);
-    }
-    Name = [];
-    Email = [];
-    Date = [];
-    Time = [];
-    Message = [];
-    Phone = [];
-
-    for (let index = 0; index < len; index++) {
-      Name.push(Name1[index]);
-      Phone.push(Phone1[index]);
-      Email.push(Email1[index]);
-      Message.push(Message1[index]);
-      Time.push(Time1[index]);
-      Date.push(Date1[index]);
-    }
   })
 
   .catch(function (err) {
     console.log(err);
   });
+
+Name.reverse();
+Phone.reverse();
+Email.reverse();
+Message.reverse();
+Time.reverse();
+Date.reverse();
 
 app.get("/", (req, res) => {
   res.render("homepage");
