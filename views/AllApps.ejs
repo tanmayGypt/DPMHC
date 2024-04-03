@@ -9,8 +9,12 @@
     padding: .75rem;
     vertical-align: top;
     border-top: 1px solid #dee2e6;
-    border-right: 2px solid gold;
+    border-right: 2px solid rgb(26, 26, 25);
     border-bottom: 2px solid #0603037a;
+}
+.data:hover{
+  transition: all;
+  transform: scale(1.1);
 }
 </style>
 </head>
@@ -29,7 +33,7 @@
         </thead>
         <tbody>
           <% for(let i=0;i<Name.length;i++){ %>
-          <tr>
+          <tr class="data">
             <td><%= (i+1) %></td>
             <th scope="row"><%= Name[i] %></th>
             
