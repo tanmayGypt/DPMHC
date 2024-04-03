@@ -119,7 +119,12 @@ app.get("/videos", (req, res) => {
     newListItem4: url,
   });
 });
-
+Name.reverse();
+Message.reverse();
+Date.reverse();
+Time.reverse();
+Email.reverse();
+Phone.reverse();
 app.get("/review", (req, res) => {
   res.render("review");
 });
@@ -133,13 +138,6 @@ app.post("/login", (req, res) => {
     req.body.email === process.env.email &&
     req.body.password === process.env.password
   ) {
-    Name.reverse();
-    Message.reverse();
-    Date.reverse();
-    Time.reverse();
-    Email.reverse();
-    Phone.reverse();
-
     res.render("AllApps", {
       Name: Name,
       Message: Message,
