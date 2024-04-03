@@ -59,13 +59,6 @@ DPMHC.find()
     console.log(err);
   });
 
-Name.reverse();
-Phone.reverse();
-Email.reverse();
-Message.reverse();
-Time.reverse();
-Date.reverse();
-
 app.get("/", (req, res) => {
   res.render("homepage");
 });
